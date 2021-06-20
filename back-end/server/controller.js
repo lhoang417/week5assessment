@@ -16,10 +16,13 @@ module.exports = {
         res.status(200).send(randomFortune)
     },
     getForm: function(req,res){
-        let bestThings = ['Instructor/Mentor', 'Cohort', 'Material', 'Structure']
+        let bestThings = ['Instructor/Mentor','Cohort','Material','Structure']
         res.status(200).send(bestThings)
     },
     getImg: function(req,res){
+        
+        // let randomInd = Math.floor(Math.random() * pics.length);
+        // let randomPics = pics[randomInd]
         res.status(200).send(pics)
     },
     getItem: function(req,res){

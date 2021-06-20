@@ -4,6 +4,7 @@ const ctrl = require("./controller.js");
 const app = express();
 const {getCompliment, getFortune, getForm, getImg, getItem, addItem, deleteItem} = ctrl;
 
+
 app.use(cors());
 
 app.use(express.json()); // When we want to be able to accept JSON.

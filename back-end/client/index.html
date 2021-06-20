@@ -6,114 +6,38 @@
   <body class="container">
       <br>
       <br>
-   
-    <center><button id="complimentButton">Get a compliment</button>
+  <center>
+    <section id="sectionOne">
+      <button id="complimentButton">Get a compliment</button>
+    </section>
+      <br>
+    <section id="sectionTwo">
+      <button id="fortuneButton">Reveal your FORTUNE</button>
+    </section>
+      <ul id="list" class=""></ul>
+    <section id="sectionThree">
+      <button id="submitBtn">Best Things about DevMountain</button>
+    </section>  
       <br>
       <br>
       <br>
-    <button id="fortuneButton">Reveal your FORTUNE</button>
-      <br>
-      <br>
-    <ul id="list" class=""></ul>
-    <button id="submitBtn">Best Things about DevMountain</button>
-      <br>
-      <br>
-      <br>
-    <button id="motivation">Motivations</button>
-        <section id="pictures"></section>
+    <!-- <button id="motivation">Motivations</button> -->
+    <header><h1>Motivations!</h1></header>
+        <section id="pictures"></section> 
     <br>
     <br>
-        <section>
-          <button id="itemsBtn">Get all items!</button>
-          <button id= "delete">delete by index value</button>
-          <input id="itemInput" placeholder="item name"/>
-          <button id= "addItem">add item</button>
-          
-        </section>
+    <section>
+      <button id="itemsBtn">Get all items!</button>
+      <button id= "delete">delete by index value</button>
+      <input id="itemInput" placeholder="item name"/>
+      <button id= "addItem">add item</button>
+    </section>
+    <br>
   </center>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/back-end/server/index.js"></script>
-    <script>
-      document.getElementById("complimentButton").onclick = function () {
-        axios.get("http://localhost:4000/api/compliment/")
-            .then(function (response) {
-              const data = response.data;
-              alert(data);
-            });
-      };
-      document.querySelector('#fortuneButton').addEventListener('click', function(){
-        axios
-        .get('http://localhost:4000/api/fortune')
-        .then(function (res){
-          const data = res.data;
-          alert(data)
-        })
-        .catch(function(err) {console.log(err)})
-      })
-     
-     document.getElementById('submitBtn').onclick = function(){
-       axios
-       .get("http://localhost:4000/api/data/")
-       .then(function(res){
-         const data = res.data;
-         document.getElementById('list').innerHTML = data
-         .map(function(list){
-           return '<li class="row">' +  list;
-         })
-         .join("");
-       })
-     };
-     document.getElementById('motivation').onclick = function(){
-       axios
-       .get('http://localhost:4000/api/pictures/')
-       .then(function(res){
-         const data = res.data;
-         document.getElementById('pictures').innerHTML = data
-         .map(function(list2){
-           return '<li class ="row">' + list2;
-         })
-         .join("");
-       })
-     };
-     document.querySelector('#itemsBtn').addEventListener('click', function(){
-       axios
-          .get('http://localhost:4000/api/items')
-          .then(function(res){
-            alert(res.data)
-          })
-          .catch(function(err){console.log(err)})
-     });
-     document.querySelector('#addItem').addEventListener('click', function(){
-        const itemValue = document.querySelector('#itemInput').value;
+    <script src="main.js"></script>
 
-        if(!itemValue) {
-          alert('cannot add empty item!')
-          return;
-        } 
-        axios
-          .post('http://localhost:4000/api/items', { newItem: itemValue})
-          .then(function(){
-            alert('Item added')
-
-            document.querySelector('#itemInput').value = '';
-          })
-          .catch(function(err){console.log(err)})
-
-
-      });
-      document.querySelector('#delete').addEventListener('click', function(){
-        const tgtIndex = prompt('Give the index position for what to delete')
-
-        axios
-          .delete(`http://localhost:4000/api/items/${tgtIndex}`)
-          .then(function(res){
-            alert(`You have deleted ${res.data}`)
-          })
-          .catch(function(err){console.log(err)})
-      });
-    </script>
-   
 
   </body>
 </html>
