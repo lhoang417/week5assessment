@@ -1,23 +1,27 @@
-const picturesContainer = document.querySelector('#pictures')
-const baseURL = `http://localhost:4000/api/pictures`
-const picturesCallback = ({ data: pics }) => displayPictures(pics)
-const getImg = () => axios.get(baseURL).then(picturesCallback)
-function createPictureCard(picture) {
-    const pictureCard = document.createElement('div')
-    pictureCard.classList.add('picture-card')
+const picturesContainer = document.querySelector('#pictures')//creating a variable using document.querySelector to call the section by id name associated on the html file
+const baseURL = `http://localhost:4000/api/pictures`// creating a variable and assigning it to the URL to make it easier for below
+
+
+function createPictureCard(picture) {// creating a function with a parameter of picture
+    const pictureCard = document.createElement('div')//creating a variable using document.createElement to create a section by id name on the html file
+    pictureCard.classList.add('picture-card')//adding a class called picture-card to the new element above
    
-    pictureCard.innerHTML = `<img alt='picture  cover' src=${picture.imageURL} class=""/>`
-    pictures.appendChild(pictureCard)
+    pictureCard.innerHTML = `<img alt='picture cover' src=${picture.imageURL} class=""/>  <button onclick="deletePic(${picture.id})">delete</button>`// .innerHTML allows us to display the HTML markup within an element. Using the img tag to display the URL as an image, alt is used as a placeholder when a picture can't be diplayed, src is the source of where the picture is coming from, and class is given so it can be displayed where the added class above is. ${picture.imageURL} is the property of the pics object for each parameter. Created button called delete with the function of deletePic with the parameter of of the id property of each picture
+    
+    picturesContainer.appendChild(pictureCard)// .appendChild() method adds a child element to the specified parent element. 
 }
 
-function displayPictures(arr) {
-    pictures.innerHTML = ``
-    for (let i = 0; i < arr.length; i++) {
-        createPictureCard(arr[i])
+function displayPictures(arr) {//creating a function called displayPictures with a parameter of an array
+    picturesContainer.innerHTML = ``//displaying the HTML markup in the picturesContainer section
+    for (let i = 0; i < arr.length; i++) {// for loop to loop through the array allow i to be each index
+        createPictureCard(arr[i])// calling the function above with the array parameter looping through each index
     }
 }
+const picturesCallback = ({ data: pics }) => displayPictures(pics)//pulling the data from the pics variable, then accessing a function called displayPictures with the pics variable as the parameter, then assigning to a function called picturesCallback
+const getImg = () => axios.get(baseURL).then(picturesCallback)//creating an axios request with our baseURL in the.get and using the picturesCallback function in our .then and assigning it to a function called getImg
+const deletePic = id => axios.delete(`${baseURL}/${id}`).then(picturesCallback)
 
-getImg()
+getImg()//calling the getImg function by invoking it
 
 document.querySelector('#itemsBtn').addEventListener('click', function(){
     axios

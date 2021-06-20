@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const ctrl = require("./controller.js");
 const app = express();
-const {getCompliment, getFortune, getForm, getImg, getItem, addItem, deleteItem} = ctrl;
+const {getCompliment, getFortune, getForm, getImg, getItem, addItem, deleteItem, deletePic} = ctrl;
 
 
 app.use(cors());
@@ -16,5 +16,6 @@ app.get("/api/pictures", getImg);
 app.get("/api/items", getItem);
 app.post("/api/items", addItem);
 app.delete("/api/items/:indexPos", deleteItem)
+app.delete("/api/pictures/:id", deletePic)
 
 app.listen(4000, () => console.log("Server running on 4000"));
