@@ -24,12 +24,12 @@ const deletePic = id => axios.delete(`${baseURL}/${id}`).then(picturesCallback)
 getImg()//calling the getImg function by invoking it
 
 document.querySelector('#itemsBtn').addEventListener('click', function(){
-    axios
-       .get('http://localhost:4000/api/items')
-       .then(function(res){
-         alert(res.data)
+     axios
+      .get('http://localhost:4000/api/items')
+      .then(function(res){
+       alert(res.data)
        })
-       .catch(function(err){console.log(err)})
+      .catch(function(err){console.log(err)})
 });
 document.querySelector('#addItem').addEventListener('click', function(){
      const itemValue = document.querySelector('#itemInput').value;
@@ -39,54 +39,55 @@ document.querySelector('#addItem').addEventListener('click', function(){
        return;
      } 
      axios
-       .post('http://localhost:4000/api/items', { newItem: itemValue})
-       .then(function(){
-         alert('Item added')
+      .post('http://localhost:4000/api/items', { newItem: itemValue})
+      .then(function(){
+       alert('Item added')
 
-         document.querySelector('#itemInput').value = '';
+        document.querySelector('#itemInput').value = '';
        })
-       .catch(function(err){console.log(err)})
+      .catch(function(err){console.log(err)})
 
 
 });
 document.querySelector('#delete').addEventListener('click', function(){
-     const tgtIndex = prompt('What index do you want to delete?')
+    const tgtIndex = prompt('What index do you want to delete?')
 
      axios
-       .delete(`http://localhost:4000/api/items/${tgtIndex}`)
-       .then(function(res){
-         alert(`You have deleted ${res.data}`)
+      .delete(`http://localhost:4000/api/items/${tgtIndex}`)
+      .then(function(res){
+       alert(`You have deleted ${res.data}`)
        })
-       .catch(function(err){console.log(err)})
+      .catch(function(err){console.log(err)})
 });
 document.getElementById("complimentButton").onclick = function () {
-    axios.get("http://localhost:4000/api/compliment/")
-        .then(function (response) {
-          const data = response.data;
-          alert(data);
-        });
+     axios
+      .get("http://localhost:4000/api/compliment/")
+      .then(function (response) {
+       const data = response.data;
+       alert(data);
+       });
 };
 document.querySelector('#fortuneButton').addEventListener('click', function(){
-    axios
-    .get('http://localhost:4000/api/fortune')
-    .then(function (res){
-      const data = res.data;
-      alert(data)
-    })
-    .catch(function(err) {console.log(err)})
+     axios
+      .get('http://localhost:4000/api/fortune')
+      .then(function (res){
+       const data = res.data;
+       alert(data)
+       })
+      .catch(function(err) {console.log(err)})
 })
  
 document.getElementById('submitBtn').onclick = function(){
-   axios
-   .get("http://localhost:4000/api/data/")
-   .then(function(res){
-     const data = res.data;
-     document.getElementById('list').innerHTML = data
-     .map(function(list){
+     axios
+      .get("http://localhost:4000/api/data/")
+      .then(function(res){
+       const data = res.data;
+       document.getElementById('list').innerHTML = data
+      .map(function(list){
        return '<li class="row">' +  list;
-     })
-     .join("");
-   })
+       })
+      .join("");
+       })
 };
      //  document.getElementById('motivation').onclick = function(){
     //    axios
