@@ -40,7 +40,7 @@ module.exports = {//module.exports is required for controller files, this is whe
     },
     deletePic: function(req, res){
         const{ picIndex } = req.params;
-        const removedPic = pics.splice(+picIndex, 1)
+        const removedPic = pics.splice(+picIndex, 1)//was going to create another function to display all deleted items within a button...
         res.status(200).send(pics)
     }
 
