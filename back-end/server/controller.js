@@ -1,7 +1,7 @@
 const pics = require('./pics.json')//need to bring in Json file using require method
 const itemsArr = ['nails','hammer','parka'];// created items array for item functions below
 
-module.exports = {//module.exports is required for controller files, this is where you create your functions for your index files
+module.exports = {//module.exports is required for controller files, this is where you create your functions for your index files and export to your index js file
     getCompliment: function (req, res){// function called getCompliment with req and res parameters
         const compliments = ["Gee, you're a smart cookie!",
         "Cool shirt!","Your Javascript skills are stellar.",];//an array of strings assigned to a variable called compliments
@@ -41,7 +41,7 @@ module.exports = {//module.exports is required for controller files, this is whe
     deletePic: function(req, res){
         const{ picIndex } = req.params;
         const removedPic = pics.splice(+picIndex, 1)
-        res.status(200).send(removedPic)
+        res.status(200).send(pics)
     }
 
 }
